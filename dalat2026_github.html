@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kỷ Niệm Đà Lạt 2026 - Lớp Chúng Mình</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #fdfcf0;
+            scroll-behavior: smooth;
+        }
+
+        header {
+            position: relative;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+                        url(https://thpthuynhvannghehcm.edu.vn/wp-content/uploads/2021/10/z2879245067337_ed7d6abae46bb0a054b0032232758daf-2048x1550.jpg);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin: 0;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin-top: 15px;
+            opacity: 0.9;
+        }
+
+        section {
+            padding: 70px 20px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #2c3e50;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            width: 70px;
+            height: 4px;
+            background: #e67e22;
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .class-section {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .class-image img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            border: 8px solid white;
+        }
+
+        .class-info blockquote {
+            font-size: 1.3rem;
+            font-style: italic;
+            border-left: 5px solid #e67e22;
+            padding-left: 20px;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .trip-container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .trip-item h3 { color: #e67e22; margin-bottom: 10px; text-transform: uppercase; }
+
+        /* ===== GALLERY WITH CAPTIONS ===== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            cursor: pointer;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.75));
+            color: white;
+            padding: 20px 14px 10px;
+            font-size: 0.9rem;
+            font-style: italic;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            opacity: 1;
+        }
+
+        .section-desc {
+            text-align: center;
+            color: #777;
+            margin-top: -30px;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        /* ===== LIGHTBOX ===== */
+        #lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.88);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        #lightbox.active {
+            display: flex;
+        }
+
+        #lightbox img {
+            max-width: 90vw;
+            max-height: 80vh;
+            border-radius: 10px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.6);
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        #lightbox-caption {
+            color: white;
+            font-size: 1.05rem;
+            font-style: italic;
+            margin-top: 16px;
+            text-align: center;
+            max-width: 600px;
+            opacity: 0.9;
+        }
+
+        #lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+            line-height: 1;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        #lightbox-close:hover { opacity: 1; }
+
+        #lightbox-prev, #lightbox-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+            padding: 10px 18px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            user-select: none;
+            transition: background 0.2s;
+        }
+
+        #lightbox-prev { left: 20px; }
+        #lightbox-next { right: 20px; }
+        #lightbox-prev:hover, #lightbox-next:hover { background: rgba(255,255,255,0.25); }
+
+        /* ===== VINYL RECORD PLAYER ===== */
+        #vinyl-player {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            width: 90px;
+            height: 90px;
+            cursor: pointer;
+        }
+
+        #vinyl-disc {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: 
+                radial-gradient(circle at center, #222 0%, #222 12%, transparent 12%),
+                radial-gradient(circle at center, #1a1a1a 0%, #1a1a1a 14%, transparent 14%),
+                repeating-radial-gradient(circle at center, #111 0px, #2a2a2a 2px, #111 4px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5), inset 0 0 20px rgba(255,255,255,0.05);
+            animation: spin 4s linear infinite;
+            animation-play-state: paused;
+            position: relative;
+            transition: box-shadow 0.3s ease;
+        }
+
+        #vinyl-disc::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 16px;
+            height: 16px;
+            background: #e67e22;
+            border-radius: 50%;
+            box-shadow: 0 0 6px rgba(230,126,34,0.8);
+        }
+
+        #vinyl-disc.playing {
+            animation-play-state: running;
+            box-shadow: 0 4px 25px rgba(230,126,34,0.5), inset 0 0 20px rgba(255,255,255,0.05);
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        #vinyl-label {
+            position: absolute;
+            bottom: -22px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.65rem;
+            color: #e67e22;
+            white-space: nowrap;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        #vinyl-player:hover #vinyl-disc {
+            filter: brightness(1.2);
+        }
+
+        #vinyl-tooltip {
+            position: absolute;
+            right: 100px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.75);
+            color: white;
+            font-size: 0.75rem;
+            padding: 5px 10px;
+            border-radius: 20px;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        #vinyl-player:hover #vinyl-tooltip {
+            opacity: 1;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 60px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8rem; }
+            .class-section { grid-template-columns: 1fr; }
+            header { height: 50vh; }
+            #lightbox-prev { left: 5px; }
+            #lightbox-next { right: 5px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>ĐÀ LẠT 2026 - KỶ NIỆM THANH XUÂN</h1>
+        <p>Hành trình gắn kết của tập thể lớp chúng mình tại Thành phố ngàn hoa</p>
+    </header>
+
+    <section id="class-overview">
+        <h2>Về Lớp Chúng Mình</h2>
+        <div class="class-section">
+            <div class="class-image">
+                <img src="z7557353044375_47a597f0933e4d216e0e1577072b80d3.jpg" alt="Ảnh tập thể lớp chúng mình">
+            </div>
+            <div class="class-info">
+                <blockquote>
+                    "Học hết sức, chơi hết mình. Đà Lạt đã chứng kiến những nụ cười rạng rỡ nhất của chúng ta."
+                </blockquote>
+                <p>Lớp chúng mình luôn là một gia đình lớn. Dù mỗi người một tính cách, nhưng khi cùng nhau đứng giữa cái lạnh 15°C của Đà Lạt, chúng mình chỉ thấy hơi ấm của sự đoàn kết.</p>
+            </div>
+        </div>
+    </section>
+
+    <section style="background-color: #f2f9ff;">
+        <h2>Tổng Quan Chuyến Đi</h2>
+        <div class="trip-container">
+            <div class="trip-item">
+                <h3>📅 Thời gian</h3>
+                <p>3 Ngày 2 Đêm<br>Từ 23/01/2026 đến 25/01/2026</p>
+            </div>
+            <div class="trip-item">
+                <h3>📍 Địa điểm</h3>
+                <p>Thành phố Đà Lạt<br>Quảng trường Lâm Viên, NHÀ THỜ DOMAIN, MONGO LAND, QUE GARDENGALA, Chợ Đêm</p>
+            </div>
+            <div class="trip-item">
+                <h3>✨ Hoạt động</h3>
+                <p>Tham quan, thưởng thức đặc sản và nghệ thuật</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Khoảnh Khắc Đáng Nhớ</h2>
+        <div class="gallery-grid" id="gallery-main">
+            <div class="gallery-item" data-caption="Bình minh rực rỡ trên cao nguyên Đà Lạt 🌅">
+                <img src="z7557353106158_d16a008ab7b8c379e57ed70738df211d.jpg" alt="Ảnh 1">
+                <div class="gallery-caption">Bình minh rực rỡ trên cao nguyên Đà Lạt 🌅</div>
+            </div>
+            <div class="gallery-item" data-caption="Cả lớp check-in tại Quảng trường Lâm Viên 📸">
+                <img src="https://via.placeholder.com/500x350?text=Anh+Da+Lat+2" alt="Ảnh 2">
+                <div class="gallery-caption">Cả lớp check-in tại Quảng trường Lâm Viên 📸</div>
+            </div>
+            <div class="gallery-item" data-caption="Dạo bước trong vườn hoa đầy màu sắc 🌸">
+                <img src="z7557353067207_b9008aa9d20fef88b44b46d4c58d8cad.jpg" alt="Ảnh 3">
+                <div class="gallery-caption">Dạo bước trong vườn hoa đầy màu sắc 🌸</div>
+            </div>
+            <div class="gallery-item" data-caption="Nhà thờ Domain - khoảnh khắc bình yên ✨">
+                <img src="z7461389794014_cb1ae4c5a8b0d056518d34d8feeb17e7.jpg" alt="Ảnh 4">
+                <div class="gallery-caption">Nhà thờ Domain - khoảnh khắc bình yên ✨</div>
+            </div>
+            <div class="gallery-item" data-caption="Khám phá Mongo Land cùng nhau 🎡">
+                <img src="https://via.placeholder.com/500x350?text=Anh+Da+Lat+5" alt="Ảnh 5">
+                <div class="gallery-caption">Khám phá Mongo Land cùng nhau 🎡</div>
+            </div>
+            <div class="gallery-item" data-caption="Chợ đêm Đà Lạt - ăn gì cũng ngon! 🍢">
+                <img src="https://via.placeholder.com/500x350?text=Anh+Da+Lat+6" alt="Ảnh 6">
+                <div class="gallery-caption">Chợ đêm Đà Lạt - ăn gì cũng ngon! 🍢</div>
+            </div>
+        </div>
+
+        <h2 style="margin-top: 80px;">Những Khoảnh Khắc "Khó Đỡ" 🤣</h2>
+        <p class="section-desc">Đi chơi làm sao thiếu được những pha tấu hài đi vào lòng người của lớp mình chứ!</p>
+
+        <div class="gallery-grid" id="gallery-funny">
+            <div class="gallery-item" data-caption="Ai đó không biết cầm đũa 😂">
+                <img src="https://via.placeholder.com/500x350?text=Anh+Hai+Huoc+1" alt="Ảnh hài hước 1">
+                <div class="gallery-caption">Ai đó không biết cầm đũa 😂</div>
+            </div>
+            <div class="gallery-item" data-caption="Pha ngã xe không đau bằng bị quay phim 🎥">
+                <img src="https://via.placeholder.com/500x350?text=Anh+Hai+Huoc+2" alt="Ảnh hài hước 2">
+                <div class="gallery-caption">Pha ngã xe không đau bằng bị quay phim 🎥</div>
+            </div>
+            <div class="gallery-item" data-caption="Mặt ai đây? Tự nhận diện nhé 🙈">
+                <img src="https://via.placeholder.com/500x350?text=Anh+Hai+Huoc+3" alt="Ảnh hài hước 3">
+                <div class="gallery-caption">Mặt ai đây? Tự nhận diện nhé 🙈</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 - Mãi mãi là một gia đình | Design by Minh Anh</p>
+    </footer>
+
+    <!-- LIGHTBOX -->
+    <div id="lightbox">
+        <span id="lightbox-close">&times;</span>
+        <span id="lightbox-prev">&#8249;</span>
+        <img id="lightbox-img" src="" alt="">
+        <div id="lightbox-caption"></div>
+        <span id="lightbox-next">&#8250;</span>
+    </div>
+
+    <!-- VINYL RECORD PLAYER -->
+    <div id="vinyl-player" title="Nhấp để bật/tắt nhạc">
+        <div id="vinyl-disc"></div>
+        <div id="vinyl-label">♪ Nhấp để bật</div>
+        <div id="vinyl-tooltip">Bật / Tắt nhạc</div>
+    </div>
+
+    <audio id="bg-music" loop>
+        <source src="co_hen_voi_thanh_xuan.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // ===== LIGHTBOX =====
+        const allItems = [];
+        document.querySelectorAll('.gallery-item').forEach((item, index) => {
+            const img = item.querySelector('img');
+            const caption = item.dataset.caption || '';
+            allItems.push({ src: img.src, caption });
+
+            item.addEventListener('click', () => {
+                openLightbox(index);
+            });
+        });
+
+        let currentIndex = 0;
+        const lightbox = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lightbox-img');
+        const lbCaption = document.getElementById('lightbox-caption');
+
+        function openLightbox(index) {
+            currentIndex = index;
+            lbImg.src = allItems[index].src;
+            lbCaption.textContent = allItems[index].caption;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        document.getElementById('lightbox-prev').addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentIndex = (currentIndex - 1 + allItems.length) % allItems.length;
+            lbImg.src = allItems[currentIndex].src;
+            lbCaption.textContent = allItems[currentIndex].caption;
+        });
+
+        document.getElementById('lightbox-next').addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentIndex = (currentIndex + 1) % allItems.length;
+            lbImg.src = allItems[currentIndex].src;
+            lbCaption.textContent = allItems[currentIndex].caption;
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') document.getElementById('lightbox-prev').click();
+            if (e.key === 'ArrowRight') document.getElementById('lightbox-next').click();
+        });
+
+        // ===== VINYL PLAYER =====
+        const audio = document.getElementById('bg-music');
+        const disc = document.getElementById('vinyl-disc');
+        const label = document.getElementById('vinyl-label');
+        let isPlaying = false;
+
+        audio.volume = 0.6;
+
+        // Autoplay on user interaction (browser policy workaround)
+        function tryAutoplay() {
+            audio.play().then(() => {
+                isPlaying = true;
+                disc.classList.add('playing');
+                label.textContent = '♪ Đang phát';
+            }).catch(() => {});
+        }
+
+        // Try autoplay immediately
+        tryAutoplay();
+
+        // Also try on first user interaction
+        document.addEventListener('click', function firstClick() {
+            if (!isPlaying) tryAutoplay();
+            document.removeEventListener('click', firstClick);
+        }, { once: true });
+
+        document.getElementById('vinyl-player').addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (isPlaying) {
+                audio.pause();
+                isPlaying = false;
+                disc.classList.remove('playing');
+                label.textContent = '♪ Nhấp để bật';
+            } else {
+                audio.play();
+                isPlaying = true;
+                disc.classList.add('playing');
+                label.textContent = '♪ Đang phát';
+            }
+        });
+    </script>
+</body>
+</html>
