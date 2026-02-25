@@ -7,568 +7,582 @@
     <style>
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             color: #333;
             background-color: #fdfcf0;
             scroll-behavior: smooth;
         }
-
         header {
             position: relative;
             height: 60vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            text-align: center; color: white;
             background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
-                        url(https://thpthuynhvannghehcm.edu.vn/wp-content/uploads/2021/10/z2879245067337_ed7d6abae46bb0a054b0032232758daf-2048x1550.jpg);
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+                url(https://thpthuynhvannghehcm.edu.vn/wp-content/uploads/2021/10/z2879245067337_ed7d6abae46bb0a054b0032232758daf-2048x1550.jpg);
+            background-size: cover; background-position: center; background-attachment: fixed;
         }
+        header h1 { font-size: 3.5rem; margin: 0; letter-spacing: 3px; text-transform: uppercase; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        header p { font-size: 1.2rem; margin-top: 15px; opacity: 0.9; }
 
-        header h1 {
-            font-size: 3.5rem;
-            margin: 0;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-        }
+        section { padding: 70px 20px; max-width: 1100px; margin: auto; }
 
-        header p {
-            font-size: 1.2rem;
-            margin-top: 15px;
-            opacity: 0.9;
-        }
+        h2 { text-align: center; font-size: 2.2rem; color: #2c3e50; margin-bottom: 50px; position: relative; }
+        h2::after { content: ''; width: 70px; height: 4px; background: #e67e22; position: absolute; bottom: -15px; left: 50%; transform: translateX(-50%); }
 
-        section {
-            padding: 70px 20px;
-            max-width: 1100px;
-            margin: auto;
-        }
+        .class-section { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center; }
+        .class-image img { width: 100%; border-radius: 15px; box-shadow: 0 15px 30px rgba(0,0,0,0.15); border: 8px solid white; }
+        .class-info blockquote { font-size: 1.3rem; font-style: italic; border-left: 5px solid #e67e22; padding-left: 20px; color: #555; line-height: 1.8; }
 
-        h2 {
-            text-align: center;
-            font-size: 2.2rem;
-            color: #2c3e50;
-            margin-bottom: 50px;
-            position: relative;
-        }
-
-        h2::after {
-            content: '';
-            width: 70px;
-            height: 4px;
-            background: #e67e22;
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .class-section {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .class-image img {
-            width: 100%;
-            border-radius: 15px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-            border: 8px solid white;
-        }
-
-        .class-info blockquote {
-            font-size: 1.3rem;
-            font-style: italic;
-            border-left: 5px solid #e67e22;
-            padding-left: 20px;
-            color: #555;
-            line-height: 1.8;
-        }
-
-        .trip-container {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            text-align: center;
-        }
-
+        .trip-container { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; text-align: center; }
         .trip-item h3 { color: #e67e22; margin-bottom: 10px; text-transform: uppercase; }
 
-        .gallery-grid {
+        /* ===== EVENT CARDS ===== */
+        .events-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
         }
 
-        .gallery-item {
-            position: relative;
-            cursor: pointer;
-            border-radius: 12px;
+        .event-card {
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+            background: white;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .gallery-item img {
-            width: 100%;
-            height: 250px;
+        .event-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 32px rgba(0,0,0,0.18);
+        }
+
+        .event-card-thumb {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .event-card-thumb img {
+            width: 100%; height: 100%;
             object-fit: cover;
             display: block;
             transition: transform 0.4s ease;
         }
 
-        .gallery-item:hover img {
-            transform: scale(1.05);
+        .event-card:hover .event-card-thumb img { transform: scale(1.07); }
+
+        .event-card-thumb .overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(transparent 40%, rgba(0,0,0,0.6));
+            display: flex; align-items: flex-end;
+            padding: 14px;
         }
 
-        .gallery-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.75));
-            color: white;
-            padding: 20px 14px 10px;
-            font-size: 0.9rem;
-            font-style: italic;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+        .event-card-thumb .overlay span {
+            color: white; font-size: 0.8rem;
+            background: rgba(230,126,34,0.85);
+            padding: 3px 10px; border-radius: 20px;
         }
 
-        .gallery-item:hover .gallery-caption {
-            opacity: 1;
-        }
+        .event-card-body { padding: 16px 18px 20px; }
+        .event-card-body h3 { margin: 0 0 8px; font-size: 1.1rem; color: #2c3e50; }
+        .event-card-body p { margin: 0; font-size: 0.88rem; color: #666; line-height: 1.6; }
 
-        .section-desc {
+        .event-card-cta {
+            display: block;
+            margin: 12px 18px 16px;
             text-align: center;
-            color: #777;
-            margin-top: -30px;
-            margin-bottom: 40px;
-            font-style: italic;
+            background: #e67e22;
+            color: white;
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: background 0.2s;
         }
+        .event-card-cta:hover { background: #cf6d17; }
 
-        #lightbox {
+        /* ===== EVENT MODAL (6-photo gallery) ===== */
+        #event-modal {
             display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.88);
-            z-index: 10000;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.82);
+            z-index: 20000;
+            justify-content: center; align-items: center;
             padding: 20px;
         }
+        #event-modal.active { display: flex; }
 
-        #lightbox.active { display: flex; }
-
-        #lightbox img {
-            max-width: 90vw;
-            max-height: 80vh;
-            border-radius: 10px;
-            box-shadow: 0 0 50px rgba(0,0,0,0.6);
-            animation: zoomIn 0.3s ease;
+        .event-modal-box {
+            background: white;
+            border-radius: 20px;
+            max-width: 900px; width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 30px;
+            position: relative;
+            animation: popIn 0.3s ease;
         }
 
-        @keyframes zoomIn {
-            from { transform: scale(0.8); opacity: 0; }
+        @keyframes popIn {
+            from { transform: scale(0.85); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
         }
 
-        #lightbox-caption {
-            color: white;
-            font-size: 1.05rem;
-            font-style: italic;
-            margin-top: 16px;
-            text-align: center;
-            max-width: 600px;
-            opacity: 0.9;
+        .event-modal-box h3 { text-align: center; font-size: 1.6rem; color: #2c3e50; margin: 0 0 6px; }
+        .event-modal-desc { text-align: center; color: #777; font-style: italic; margin-bottom: 20px; font-size: 0.92rem; }
+
+        .event-modal-photos {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
         }
 
-        #lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            font-size: 2.5rem;
-            color: white;
+        .event-photo-slot {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
             cursor: pointer;
-            line-height: 1;
-            opacity: 0.8;
-            transition: opacity 0.2s;
+            height: 160px;
+            background: #f0f0f0;
+            border: 2px dashed #ccc;
+            display: flex; align-items: center; justify-content: center;
+            transition: border-color 0.2s;
         }
 
+        .event-photo-slot img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .event-photo-slot:hover img { transform: scale(1.06); }
+
+        .event-photo-slot .placeholder-text {
+            text-align: center; color: #aaa; font-size: 0.8rem; padding: 10px;
+        }
+
+        .event-photo-slot .photo-caption-overlay {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.65));
+            color: white; font-size: 0.78rem; font-style: italic;
+            padding: 16px 8px 6px;
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .event-photo-slot:hover .photo-caption-overlay { opacity: 1; }
+
+        #event-modal-close {
+            position: absolute; top: 14px; right: 20px;
+            font-size: 2rem; cursor: pointer; color: #888;
+            line-height: 1; transition: color 0.2s;
+        }
+        #event-modal-close:hover { color: #333; }
+
+        /* ===== GALLERY ===== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .gallery-item { position: relative; cursor: pointer; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .gallery-item img { width: 100%; height: 250px; object-fit: cover; display: block; transition: transform 0.4s ease; }
+        .gallery-item:hover img { transform: scale(1.05); }
+        .gallery-caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.75)); color: white; padding: 20px 14px 10px; font-size: 0.9rem; font-style: italic; opacity: 0; transition: opacity 0.3s ease; }
+        .gallery-item:hover .gallery-caption { opacity: 1; }
+        .section-desc { text-align: center; color: #777; margin-top: -30px; margin-bottom: 40px; font-style: italic; }
+
+        /* ===== LIGHTBOX (main gallery) ===== */
+        #lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 30000; justify-content: center; align-items: center; flex-direction: column; padding: 20px; }
+        #lightbox.active { display: flex; }
+        #lightbox img { max-width: 90vw; max-height: 80vh; border-radius: 10px; box-shadow: 0 0 50px rgba(0,0,0,0.6); animation: zoomIn 0.3s ease; }
+        @keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        #lightbox-caption { color: white; font-size: 1.05rem; font-style: italic; margin-top: 16px; text-align: center; max-width: 600px; opacity: 0.9; }
+        #lightbox-close { position: absolute; top: 20px; right: 30px; font-size: 2.5rem; color: white; cursor: pointer; line-height: 1; opacity: 0.8; transition: opacity 0.2s; }
         #lightbox-close:hover { opacity: 1; }
-
-        #lightbox-prev, #lightbox-next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 2.5rem;
-            color: white;
-            cursor: pointer;
-            padding: 10px 18px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            user-select: none;
-            transition: background 0.2s;
-        }
-
-        #lightbox-prev { left: 20px; }
-        #lightbox-next { right: 20px; }
+        #lightbox-prev, #lightbox-next { position: absolute; top: 50%; transform: translateY(-50%); font-size: 2.5rem; color: white; cursor: pointer; padding: 10px 18px; background: rgba(255,255,255,0.1); border-radius: 50%; user-select: none; transition: background 0.2s; }
+        #lightbox-prev { left: 20px; } #lightbox-next { right: 20px; }
         #lightbox-prev:hover, #lightbox-next:hover { background: rgba(255,255,255,0.25); }
 
-        #vinyl-player {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 9999;
-            width: 90px;
-            height: 90px;
-            cursor: pointer;
-        }
-
-        #vinyl-disc {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            background: 
-                radial-gradient(circle at center, #222 0%, #222 12%, transparent 12%),
-                radial-gradient(circle at center, #1a1a1a 0%, #1a1a1a 14%, transparent 14%),
-                repeating-radial-gradient(circle at center, #111 0px, #2a2a2a 2px, #111 4px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5), inset 0 0 20px rgba(255,255,255,0.05);
-            animation: spin 4s linear infinite;
-            animation-play-state: paused;
-            position: relative;
-            transition: box-shadow 0.3s ease;
-        }
-
-        #vinyl-disc::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 16px;
-            height: 16px;
-            background: #e67e22;
-            border-radius: 50%;
-            box-shadow: 0 0 6px rgba(230,126,34,0.8);
-        }
-
-        #vinyl-disc.playing {
-            animation-play-state: running;
-            box-shadow: 0 4px 25px rgba(230,126,34,0.5), inset 0 0 20px rgba(255,255,255,0.05);
-        }
-
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        #vinyl-label {
-            position: absolute;
-            bottom: -22px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.65rem;
-            color: #e67e22;
-            white-space: nowrap;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
+        /* ===== VINYL ===== */
+        #vinyl-player { position: fixed; top: 20px; right: 20px; z-index: 9999; width: 90px; height: 90px; cursor: pointer; }
+        #vinyl-disc { width: 90px; height: 90px; border-radius: 50%; background: radial-gradient(circle at center, #222 0%, #222 12%, transparent 12%), radial-gradient(circle at center, #1a1a1a 0%, #1a1a1a 14%, transparent 14%), repeating-radial-gradient(circle at center, #111 0px, #2a2a2a 2px, #111 4px); box-shadow: 0 4px 20px rgba(0,0,0,0.5); animation: spin 4s linear infinite; animation-play-state: paused; position: relative; transition: box-shadow 0.3s; }
+        #vinyl-disc::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 16px; height: 16px; background: #e67e22; border-radius: 50%; box-shadow: 0 0 6px rgba(230,126,34,0.8); }
+        #vinyl-disc.playing { animation-play-state: running; box-shadow: 0 4px 25px rgba(230,126,34,0.5); }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        #vinyl-label { position: absolute; bottom: -22px; left: 50%; transform: translateX(-50%); font-size: 0.65rem; color: #e67e22; white-space: nowrap; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
         #vinyl-player:hover #vinyl-disc { filter: brightness(1.2); }
-
-        #vinyl-tooltip {
-            position: absolute;
-            right: 100px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0,0,0,0.75);
-            color: white;
-            font-size: 0.75rem;
-            padding: 5px 10px;
-            border-radius: 20px;
-            white-space: nowrap;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
+        #vinyl-tooltip { position: absolute; right: 100px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.75); color: white; font-size: 0.75rem; padding: 5px 10px; border-radius: 20px; white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity 0.3s; }
         #vinyl-player:hover #vinyl-tooltip { opacity: 1; }
 
-        footer {
-            background: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 30px 0;
-            margin-top: 60px;
-        }
+        footer { background: #2c3e50; color: white; text-align: center; padding: 30px 0; margin-top: 60px; }
 
         @media (max-width: 768px) {
             header h1 { font-size: 1.8rem; }
             .class-section { grid-template-columns: 1fr; }
             header { height: 50vh; }
-            #lightbox-prev { left: 5px; }
-            #lightbox-next { right: 5px; }
+            #lightbox-prev { left: 5px; } #lightbox-next { right: 5px; }
+            .event-modal-photos { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>ĐÀ LẠT 2026 - KỶ NIỆM THANH XUÂN</h1>
-        <p>Hành trình gắn kết của tập thể lớp chúng mình tại Thành phố ngàn hoa</p>
-    </header>
+<header>
+    <h1>ĐÀ LẠT 2026 - KỶ NIỆM THANH XUÂN</h1>
+    <p>Hành trình gắn kết của tập thể lớp chúng mình tại Thành phố ngàn hoa</p>
+</header>
 
-    <section id="class-overview">
-        <h2>Về Lớp Chúng Mình</h2>
-        <div class="class-section">
-            <div class="class-image">
-                <img src="z7557353044375_47a597f0933e4d216e0e1577072b80d3.jpg" alt="Ảnh tập thể lớp chúng mình">
-            </div>
-            <div class="class-info">
-                <blockquote>
-                    "Học hết sức, chơi hết mình. Đà Lạt đã chứng kiến những nụ cười rạng rỡ nhất của chúng ta."
-                </blockquote>
-                <p>Lớp chúng mình luôn là một gia đình lớn. Dù mỗi người một tính cách, nhưng khi cùng nhau đứng giữa cái lạnh 15°C của Đà Lạt, chúng mình chỉ thấy hơi ấm của sự đoàn kết.</p>
-            </div>
+<section id="class-overview">
+    <h2>Về Lớp Chúng Mình</h2>
+    <div class="class-section">
+        <div class="class-image">
+            <img src="z7557353044375_47a597f0933e4d216e0e1577072b80d3.jpg" alt="Ảnh tập thể lớp chúng mình">
         </div>
-    </section>
-
-    <section style="background-color: #f2f9ff;">
-        <h2>Tổng Quan Chuyến Đi</h2>
-        <div class="trip-container">
-            <div class="trip-item">
-                <h3>📅 Thời gian</h3>
-                <p>3 Ngày 2 Đêm<br>Từ 23/01/2026 đến 25/01/2026</p>
-            </div>
-            <div class="trip-item">
-                <h3>📍 Địa điểm</h3>
-                <p>Thành phố Đà Lạt<br>Quảng trường Lâm Viên, NHÀ THỜ DOMAIN, MONGO LAND, QUE GARDENGALA, Chợ Đêm</p>
-            </div>
-            <div class="trip-item">
-                <h3>✨ Hoạt động</h3>
-                <p>Tham quan, thưởng thức đặc sản và nghệ thuật</p>
-            </div>
+        <div class="class-info">
+            <blockquote>"Học hết sức, chơi hết mình. Đà Lạt đã chứng kiến những nụ cười rạng rỡ nhất của chúng ta."</blockquote>
+            <p>Lớp chúng mình luôn là một gia đình lớn. Dù mỗi người một tính cách, nhưng khi cùng nhau đứng giữa cái lạnh 15°C của Đà Lạt, chúng mình chỉ thấy hơi ấm của sự đoàn kết.</p>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section>
-        <h2>Khoảnh Khắc Đáng Nhớ</h2>
-        <div class="gallery-grid" id="gallery-main">
+<section style="background-color: #f2f9ff;">
+    <h2>Tổng Quan Chuyến Đi</h2>
+    <div class="trip-container">
+        <div class="trip-item">
+            <h3>📅 Thời gian</h3>
+            <p>3 Ngày 2 Đêm<br>Từ 23/01/2026 đến 25/01/2026</p>
+        </div>
+        <div class="trip-item">
+            <h3>📍 Địa điểm</h3>
+            <p>Thành phố Đà Lạt<br>Quảng trường Lâm Viên, Nhà thờ Domain, Que Garden Gala, Chợ Đêm</p>
+        </div>
+        <div class="trip-item">
+            <h3>✨ Hoạt động</h3>
+            <p>Tham quan, thưởng thức đặc sản và nghệ thuật</p>
+        </div>
+    </div>
+</section>
 
-            <div class="gallery-item" data-caption="Bình minh rực rỡ trên cao nguyên Đà Lạt 🌅">
-                <img src="pic1.jpg" alt="Ảnh 1">
-                <div class="gallery-caption">Bình minh rực rỡ trên cao nguyên Đà Lạt 🌅</div>
+<!-- ===== SỰ KIỆN ===== -->
+<section>
+    <h2>Địa Điểm Chúng Mình Đã Ghé</h2>
+    <p class="section-desc" style="margin-top:-30px; margin-bottom:40px;">Nhấp vào từng nơi để xem ảnh của lớp mình tại đó 📍</p>
+
+    <div class="events-grid">
+
+        <!-- 1. Quảng trường Lâm Viên -->
+        <div class="event-card" onclick="openEventModal('lamvien')">
+            <div class="event-card-thumb">
+                <img src="event_lamvien_cover.jpg" alt="Quảng trường Lâm Viên"
+                     onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Camponotus_flavomarginatus_ant.jpg/320px-Camponotus_flavomarginatus_ant.jpg'; this.style.filter='hue-rotate(200deg) brightness(0.6)'; this.parentElement.style.background='#1a3a5c'">
+                <div class="overlay"><span>📍 Lâm Đồng</span></div>
             </div>
-
-            <div class="gallery-item" data-caption="Cả lớp check-in tại Quảng trường Lâm Viên 📸">
-                <img src="z7557353044375_47a597f0933e4d216e0e1577072b80d3.jpg" alt="Ảnh 2">
-                <div class="gallery-caption">Cả lớp check-in tại Quảng trường Lâm Viên 📸</div>
+            <div class="event-card-body">
+                <h3>🌸 Quảng Trường Lâm Viên</h3>
+                <p>Biểu tượng của Đà Lạt với hoa atiso khổng lồ, bờ hồ Xuân Hương thơ mộng — nơi cả lớp chụp ảnh tập thể đầu tiên.</p>
             </div>
-
-            <div class="gallery-item" data-caption="Dạo bước trong vườn hoa đầy màu sắc 🌸">
-                <img src="z7557353067207_b9008aa9d20fef88b44b46d4c58d8cad.jpg" alt="Ảnh 3">
-                <div class="gallery-caption">Dạo bước trong vườn hoa đầy màu sắc 🌸</div>
-            </div>
-
-            <div class="gallery-item" data-caption="Nhà thờ Domain - khoảnh khắc bình yên ✨">
-                <img src="z7461389794014_cb1ae4c5a8b0d056518d34d8feeb17e7.jpg" alt="Ảnh 4">
-                <div class="gallery-caption">Nhà thờ Domain - khoảnh khắc bình yên ✨</div>
-            </div>
-
-            <div class="gallery-item" data-caption="Khám phá Mongo Land cùng nhau 🎡">
-                <img src="z7557353106158_d16a008ab7b8c379e57ed70738df211d.jpg" alt="Ảnh 5">
-                <div class="gallery-caption">Khám phá Mongo Land cùng nhau 🎡</div>
-            </div>
-
-            <div class="gallery-item" data-caption="Chợ đêm Đà Lạt - ăn gì cũng ngon! 🍢">
-                <img src="pic6.jpg" alt="Ảnh 6">
-                <div class="gallery-caption">Chợ đêm Đà Lạt - ăn gì cũng ngon! 🍢</div>
-            </div>
-
-            <div class="gallery-item" data-caption="Kỷ niệm bên hồ Xuân Hương lung linh 🌊">
-                <img src="pic7.jpg" alt="Ảnh 7">
-                <div class="gallery-caption">Kỷ niệm bên hồ Xuân Hương lung linh 🌊</div>
-            </div>
-
-            <div class="gallery-item" data-caption="Cùng nhau ngắm hoàng hôn Đà Lạt 🌇">
-                <img src="pic8.jpg" alt="Ảnh 8">
-                <div class="gallery-caption">Cùng nhau ngắm hoàng hôn Đà Lạt 🌇</div>
-            </div>
-
+            <span class="event-card-cta">Xem 6 ảnh →</span>
         </div>
 
-        <h2 style="margin-top: 80px;">Những Khoảnh Khắc "Khó Đỡ" 🤣</h2>
-        <p class="section-desc">Đi chơi làm sao thiếu được những pha tấu hài đi vào lòng người của lớp mình chứ!</p>
-
-        <div class="gallery-grid" id="gallery-funny">
-
-            <div class="gallery-item" data-caption="Ai đó không biết cầm đũa 😂">
-                <img src="funny1.jpg" alt="Ảnh hài hước 1">
-                <div class="gallery-caption">Ai đó không biết cầm đũa 😂</div>
+        <!-- 2. Nhà thờ Domain -->
+        <div class="event-card" onclick="openEventModal('domain')">
+            <div class="event-card-thumb">
+                <img src="event_domain_cover.jpg" alt="Nhà thờ Domain"
+                     onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Camponotus_flavomarginatus_ant.jpg/320px-Camponotus_flavomarginatus_ant.jpg'; this.style.filter='hue-rotate(300deg) brightness(0.5)'">
+                <div class="overlay"><span>⛪ Kiến trúc</span></div>
             </div>
-
-            <div class="gallery-item" data-caption="Pha ngã xe không đau bằng bị quay phim 🎥">
-                <img src="funny2.jpg" alt="Ảnh hài hước 2">
-                <div class="gallery-caption">Pha ngã xe không đau bằng bị quay phim 🎥</div>
+            <div class="event-card-body">
+                <h3>⛪ Nhà Thờ Domain</h3>
+                <p>Công trình kiến trúc Pháp cổ kính giữa lòng Đà Lạt. Ánh đèn vàng buổi tối tạo nên khung cảnh huyền ảo khó quên.</p>
             </div>
-
-            <div class="gallery-item" data-caption="Mặt ai đây? Tự nhận diện nhé 🙈">
-                <img src="funny3.jpg" alt="Ảnh hài hước 3">
-                <div class="gallery-caption">Mặt ai đây? Tự nhận diện nhé 🙈</div>
-            </div>
-
-            <div class="gallery-item" data-caption="Pose hết mình dù trời lạnh cóng ❄️😆">
-                <img src="funny4.jpg" alt="Ảnh hài hước 4">
-                <div class="gallery-caption">Pose hết mình dù trời lạnh cóng ❄️😆</div>
-            </div>
-
-            <div class="gallery-item" data-caption="Khoảnh khắc 'ăn nhiều nhất lớp' lộ diện 🍜😅">
-                <img src="funny5.jpg" alt="Ảnh hài hước 5">
-                <div class="gallery-caption">Khoảnh khắc 'ăn nhiều nhất lớp' lộ diện 🍜😅</div>
-            </div>
-
-            <div class="gallery-item" data-caption="Selfie lúc 6 giờ sáng - nhan sắc không cần filter 😴">
-                <img src="funny6.jpg" alt="Ảnh hài hước 6">
-                <div class="gallery-caption">Selfie lúc 6 giờ sáng - nhan sắc không cần filter 😴</div>
-            </div>
-
-            <div class="gallery-item" data-caption="Đội hình 'lạc đường' kinh điển 🗺️😂">
-                <img src="funny7.jpg" alt="Ảnh hài hước 7">
-                <div class="gallery-caption">Đội hình 'lạc đường' kinh điển 🗺️😂</div>
-            </div>
-
-            <div class="gallery-item" data-caption="Cười không nhặt được miệng - classic! 🤣">
-                <img src="funny8.jpg" alt="Ảnh hài hước 8">
-                <div class="gallery-caption">Cười không nhặt được miệng - classic! 🤣</div>
-            </div>
-
+            <span class="event-card-cta">Xem 6 ảnh →</span>
         </div>
-    </section>
 
-    <footer>
-        <p>© 2026 - Mãi mãi là một gia đình | Design by Minh Anh</p>
-    </footer>
+        <!-- 3. Que Garden Gala -->
+        <div class="event-card" onclick="openEventModal('quegarden')">
+            <div class="event-card-thumb">
+                <img src="event_quegarden_cover.jpg" alt="Que Garden Gala"
+                     onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Camponotus_flavomarginatus_ant.jpg/320px-Camponotus_flavomarginatus_ant.jpg'; this.style.filter='hue-rotate(100deg) brightness(0.55)'">
+                <div class="overlay"><span>🌺 Vườn hoa</span></div>
+            </div>
+            <div class="event-card-body">
+                <h3>🌺 Que Garden Gala</h3>
+                <p>Khu vườn hoa rực rỡ sắc màu — thiên đường check-in của cả lớp. Mỗi góc đều là một bức ảnh đẹp chờ được chụp.</p>
+            </div>
+            <span class="event-card-cta">Xem 6 ảnh →</span>
+        </div>
 
-    <!-- LIGHTBOX -->
-    <div id="lightbox">
-        <span id="lightbox-close">&times;</span>
-        <span id="lightbox-prev">&#8249;</span>
-        <img id="lightbox-img" src="" alt="">
-        <div id="lightbox-caption"></div>
-        <span id="lightbox-next">&#8250;</span>
+        <!-- 4. Chợ Đêm -->
+        <div class="event-card" onclick="openEventModal('chodem')">
+            <div class="event-card-thumb">
+                <img src="event_chodem_cover.jpg" alt="Chợ Đêm Đà Lạt"
+                     onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Camponotus_flavomarginatus_ant.jpg/320px-Camponotus_flavomarginatus_ant.jpg'; this.style.filter='hue-rotate(30deg) brightness(0.5)'">
+                <div class="overlay"><span>🍢 Ẩm thực</span></div>
+            </div>
+            <div class="event-card-body">
+                <h3>🍢 Chợ Đêm Đà Lạt</h3>
+                <p>Thiên đường ẩm thực về đêm! Bánh tráng nướng, sữa đậu nành, nem nướng… Ai cũng ăn no đến không đi nổi.</p>
+            </div>
+            <span class="event-card-cta">Xem 6 ảnh →</span>
+        </div>
+
+    </div>
+</section>
+
+<!-- ===== EVENT MODAL ===== -->
+<div id="event-modal">
+    <div class="event-modal-box">
+        <span id="event-modal-close" onclick="closeEventModal()">&times;</span>
+        <h3 id="event-modal-title">Tên địa điểm</h3>
+        <p class="event-modal-desc" id="event-modal-desc">Mô tả</p>
+        <div class="event-modal-photos" id="event-modal-photos"></div>
+    </div>
+</div>
+
+<!-- ===== GALLERY ===== -->
+<section>
+    <h2>Khoảnh Khắc Đáng Nhớ</h2>
+    <div class="gallery-grid" id="gallery-main">
+        <div class="gallery-item" data-caption="Bình minh rực rỡ trên cao nguyên Đà Lạt 🌅">
+            <img src="pic1.jpg" alt="Ảnh 1">
+            <div class="gallery-caption">Bình minh rực rỡ trên cao nguyên Đà Lạt 🌅</div>
+        </div>
+        <div class="gallery-item" data-caption="Cả lớp check-in tại Quảng trường Lâm Viên 📸">
+            <img src="z7557353044375_47a597f0933e4d216e0e1577072b80d3.jpg" alt="Ảnh 2">
+            <div class="gallery-caption">Cả lớp check-in tại Quảng trường Lâm Viên 📸</div>
+        </div>
+        <div class="gallery-item" data-caption="Dạo bước trong vườn hoa đầy màu sắc 🌸">
+            <img src="z7557353067207_b9008aa9d20fef88b44b46d4c58d8cad.jpg" alt="Ảnh 3">
+            <div class="gallery-caption">Dạo bước trong vườn hoa đầy màu sắc 🌸</div>
+        </div>
+        <div class="gallery-item" data-caption="Nhà thờ Domain - khoảnh khắc bình yên ✨">
+            <img src="z7461389794014_cb1ae4c5a8b0d056518d34d8feeb17e7.jpg" alt="Ảnh 4">
+            <div class="gallery-caption">Nhà thờ Domain - khoảnh khắc bình yên ✨</div>
+        </div>
+        <div class="gallery-item" data-caption="Khám phá Mongo Land cùng nhau 🎡">
+            <img src="z7557353106158_d16a008ab7b8c379e57ed70738df211d.jpg" alt="Ảnh 5">
+            <div class="gallery-caption">Khám phá Mongo Land cùng nhau 🎡</div>
+        </div>
+        <div class="gallery-item" data-caption="Chợ đêm Đà Lạt - ăn gì cũng ngon! 🍢">
+            <img src="pic6.jpg" alt="Ảnh 6">
+            <div class="gallery-caption">Chợ đêm Đà Lạt - ăn gì cũng ngon! 🍢</div>
+        </div>
+        <div class="gallery-item" data-caption="Kỷ niệm bên hồ Xuân Hương lung linh 🌊">
+            <img src="pic7.jpg" alt="Ảnh 7">
+            <div class="gallery-caption">Kỷ niệm bên hồ Xuân Hương lung linh 🌊</div>
+        </div>
+        <div class="gallery-item" data-caption="Cùng nhau ngắm hoàng hôn Đà Lạt 🌇">
+            <img src="pic8.jpg" alt="Ảnh 8">
+            <div class="gallery-caption">Cùng nhau ngắm hoàng hôn Đà Lạt 🌇</div>
+        </div>
     </div>
 
-    <!-- VINYL RECORD PLAYER -->
-    <div id="vinyl-player" title="Nhấp để bật/tắt nhạc">
-        <div id="vinyl-disc"></div>
-        <div id="vinyl-label">♪ Nhấp để bật</div>
-        <div id="vinyl-tooltip">Bật / Tắt nhạc</div>
+    <h2 style="margin-top: 80px;">Những Khoảnh Khắc "Khó Đỡ" 🤣</h2>
+    <p class="section-desc">Đi chơi làm sao thiếu được những pha tấu hài đi vào lòng người của lớp mình chứ!</p>
+    <div class="gallery-grid" id="gallery-funny">
+        <div class="gallery-item" data-caption="Ai đó không biết cầm đũa 😂"><img src="funny1.jpg" alt="Hài 1"><div class="gallery-caption">Ai đó không biết cầm đũa 😂</div></div>
+        <div class="gallery-item" data-caption="Pha ngã xe không đau bằng bị quay phim 🎥"><img src="funny2.jpg" alt="Hài 2"><div class="gallery-caption">Pha ngã xe không đau bằng bị quay phim 🎥</div></div>
+        <div class="gallery-item" data-caption="Mặt ai đây? Tự nhận diện nhé 🙈"><img src="funny3.jpg" alt="Hài 3"><div class="gallery-caption">Mặt ai đây? Tự nhận diện nhé 🙈</div></div>
+        <div class="gallery-item" data-caption="Pose hết mình dù trời lạnh cóng ❄️😆"><img src="funny4.jpg" alt="Hài 4"><div class="gallery-caption">Pose hết mình dù trời lạnh cóng ❄️😆</div></div>
+        <div class="gallery-item" data-caption="Khoảnh khắc 'ăn nhiều nhất lớp' lộ diện 🍜😅"><img src="funny5.jpg" alt="Hài 5"><div class="gallery-caption">Khoảnh khắc 'ăn nhiều nhất lớp' lộ diện 🍜😅</div></div>
+        <div class="gallery-item" data-caption="Selfie lúc 6 giờ sáng - nhan sắc không cần filter 😴"><img src="funny6.jpg" alt="Hài 6"><div class="gallery-caption">Selfie lúc 6 giờ sáng - nhan sắc không cần filter 😴</div></div>
+        <div class="gallery-item" data-caption="Đội hình 'lạc đường' kinh điển 🗺️😂"><img src="funny7.jpg" alt="Hài 7"><div class="gallery-caption">Đội hình 'lạc đường' kinh điển 🗺️😂</div></div>
+        <div class="gallery-item" data-caption="Cười không nhặt được miệng - classic! 🤣"><img src="funny8.jpg" alt="Hài 8"><div class="gallery-caption">Cười không nhặt được miệng - classic! 🤣</div></div>
     </div>
+</section>
 
-    <audio id="bg-music" loop>
-        <source src="co_hen_voi_thanh_xuan.mp3" type="audio/mpeg">
-    </audio>
+<footer>
+    <p>© 2026 - Mãi mãi là một gia đình | Design by Minh Anh</p>
+</footer>
 
-    <script>
-        const allItems = [];
-        document.querySelectorAll('.gallery-item').forEach((item, index) => {
-            const img = item.querySelector('img');
-            const caption = item.dataset.caption || '';
-            allItems.push({ src: img.src, caption });
-            item.addEventListener('click', () => openLightbox(index));
-        });
+<!-- LIGHTBOX -->
+<div id="lightbox">
+    <span id="lightbox-close">&times;</span>
+    <span id="lightbox-prev">&#8249;</span>
+    <img id="lightbox-img" src="" alt="">
+    <div id="lightbox-caption"></div>
+    <span id="lightbox-next">&#8250;</span>
+</div>
 
-        let currentIndex = 0;
-        const lightbox = document.getElementById('lightbox');
-        const lbImg = document.getElementById('lightbox-img');
-        const lbCaption = document.getElementById('lightbox-caption');
+<!-- VINYL -->
+<div id="vinyl-player" title="Nhấp để bật/tắt nhạc">
+    <div id="vinyl-disc"></div>
+    <div id="vinyl-label">♪ Nhấp để bật</div>
+    <div id="vinyl-tooltip">Bật / Tắt nhạc</div>
+</div>
 
-        function openLightbox(index) {
-            currentIndex = index;
-            lbImg.src = allItems[index].src;
-            lbCaption.textContent = allItems[index].caption;
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
+<audio id="bg-music" loop>
+    <source src="co_hen_voi_thanh_xuan.mp3" type="audio/mpeg">
+</audio>
 
-        function closeLightbox() {
-            lightbox.classList.remove('active');
-            document.body.style.overflow = '';
-        }
+<script>
+// ===== EVENT DATA =====
+const eventData = {
+    lamvien: {
+        title: '🌸 Quảng Trường Lâm Viên',
+        desc: 'Biểu tượng của Đà Lạt — nơi cả lớp cùng đứng bên hồ Xuân Hương và cười thật tươi',
+        photos: [
+            { src: 'lamvien1.jpg', caption: 'Toàn cảnh Quảng trường Lâm Viên' },
+            { src: 'lamvien2.jpg', caption: 'Hoa atiso khổng lồ biểu tượng Đà Lạt' },
+            { src: 'lamvien3.jpg', caption: 'Cả lớp chụp tập thể bên hồ' },
+            { src: 'lamvien4.jpg', caption: 'Ánh đèn đêm lung linh' },
+            { src: 'lamvien5.jpg', caption: 'Góc check-in yêu thích' },
+            { src: 'lamvien6.jpg', caption: 'Khoảnh khắc vui vẻ bên nhau' },
+        ]
+    },
+    domain: {
+        title: '⛪ Nhà Thờ Domain',
+        desc: 'Kiến trúc Pháp cổ kính, ánh đèn vàng huyền ảo — nơi lưu lại những bức ảnh đẹp nhất',
+        photos: [
+            { src: 'domain1.jpg', caption: 'Nhà thờ Domain ban đêm' },
+            { src: 'domain2.jpg', caption: 'Cổng vào nhà thờ' },
+            { src: 'domain3.jpg', caption: 'Góc sân nhà thờ cổ kính' },
+            { src: 'domain4.jpg', caption: 'Nhóm bạn check-in trước nhà thờ' },
+            { src: 'domain5.jpg', caption: 'Chi tiết kiến trúc đẹp' },
+            { src: 'domain6.jpg', caption: 'Toàn cảnh nhà thờ' },
+        ]
+    },
+    quegarden: {
+        title: '🌺 Que Garden Gala',
+        desc: 'Vườn hoa rực rỡ — mỗi bước chân là một bức ảnh đẹp đang chờ được chụp',
+        photos: [
+            { src: 'quegarden1.jpg', caption: 'Lối đi hoa rực rỡ' },
+            { src: 'quegarden2.jpg', caption: 'Góc vườn hoa đẹp nhất' },
+            { src: 'quegarden3.jpg', caption: 'Selfie giữa vườn' },
+            { src: 'quegarden4.jpg', caption: 'Cả nhóm cùng check-in' },
+            { src: 'quegarden5.jpg', caption: 'Hoa nhiều màu sắc' },
+            { src: 'quegarden6.jpg', caption: 'Khoảnh khắc đáng nhớ tại vườn' },
+        ]
+    },
+    chodem: {
+        title: '🍢 Chợ Đêm Đà Lạt',
+        desc: 'Thiên đường ẩm thực — ăn no, cười nhiều, kỷ niệm không bao giờ quên',
+        photos: [
+            { src: 'chodem1.jpg', caption: 'Chợ đêm rực rỡ ánh đèn' },
+            { src: 'chodem2.jpg', caption: 'Bánh tráng nướng Đà Lạt' },
+            { src: 'chodem3.jpg', caption: 'Cả lớp ngồi ăn vỉa hè' },
+            { src: 'chodem4.jpg', caption: 'Sữa đậu nành nóng lạnh buổi đêm' },
+            { src: 'chodem5.jpg', caption: 'Nem nướng đặc sản' },
+            { src: 'chodem6.jpg', caption: 'Khoảnh khắc ăn no không muốn về' },
+        ]
+    }
+};
 
-        document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
-        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+// ===== EVENT MODAL =====
+let eventLightboxItems = [];
+let eventLightboxIndex = 0;
 
-        document.getElementById('lightbox-prev').addEventListener('click', (e) => {
-            e.stopPropagation();
-            currentIndex = (currentIndex - 1 + allItems.length) % allItems.length;
-            lbImg.src = allItems[currentIndex].src;
-            lbCaption.textContent = allItems[currentIndex].caption;
-        });
+function openEventModal(key) {
+    const data = eventData[key];
+    document.getElementById('event-modal-title').textContent = data.title;
+    document.getElementById('event-modal-desc').textContent = data.desc;
 
-        document.getElementById('lightbox-next').addEventListener('click', (e) => {
-            e.stopPropagation();
-            currentIndex = (currentIndex + 1) % allItems.length;
-            lbImg.src = allItems[currentIndex].src;
-            lbCaption.textContent = allItems[currentIndex].caption;
-        });
+    eventLightboxItems = data.photos;
 
-        document.addEventListener('keydown', (e) => {
-            if (!lightbox.classList.contains('active')) return;
-            if (e.key === 'Escape') closeLightbox();
-            if (e.key === 'ArrowLeft') document.getElementById('lightbox-prev').click();
-            if (e.key === 'ArrowRight') document.getElementById('lightbox-next').click();
-        });
+    const container = document.getElementById('event-modal-photos');
+    container.innerHTML = '';
+    data.photos.forEach((photo, i) => {
+        const slot = document.createElement('div');
+        slot.className = 'event-photo-slot';
+        slot.innerHTML = `
+            <img src="${photo.src}" alt="${photo.caption}"
+                 onerror="this.parentElement.innerHTML='<div class=\\'placeholder-text\\'>📷<br>Thêm ảnh:<br><em>${photo.src}</em></div>'">
+            <div class="photo-caption-overlay">${photo.caption}</div>
+        `;
+        slot.addEventListener('click', () => openEventLightbox(i));
+        container.appendChild(slot);
+    });
 
-        const audio = document.getElementById('bg-music');
-        const disc = document.getElementById('vinyl-disc');
-        const label = document.getElementById('vinyl-label');
-        let isPlaying = false;
+    document.getElementById('event-modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
 
-        audio.volume = 0.6;
+function closeEventModal() {
+    document.getElementById('event-modal').classList.remove('active');
+    document.body.style.overflow = '';
+}
 
-        function tryAutoplay() {
-            audio.play().then(() => {
-                isPlaying = true;
-                disc.classList.add('playing');
-                label.textContent = '♪ Đang phát';
-            }).catch(() => {});
-        }
+document.getElementById('event-modal').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('event-modal')) closeEventModal();
+});
 
-        tryAutoplay();
+// ===== EVENT PHOTO LIGHTBOX =====
+function openEventLightbox(index) {
+    eventLightboxIndex = index;
+    const photo = eventLightboxItems[index];
+    const lbImg = document.getElementById('lightbox-img');
+    const lbCap = document.getElementById('lightbox-caption');
+    lbImg.src = photo.src;
+    lbCap.textContent = photo.caption;
+    document.getElementById('lightbox').classList.add('active');
+}
 
-        document.addEventListener('click', function firstClick() {
-            if (!isPlaying) tryAutoplay();
-            document.removeEventListener('click', firstClick);
-        }, { once: true });
+// ===== MAIN GALLERY LIGHTBOX =====
+const allItems = [];
+document.querySelectorAll('#gallery-main .gallery-item, #gallery-funny .gallery-item').forEach((item, index) => {
+    const img = item.querySelector('img');
+    const caption = item.dataset.caption || '';
+    allItems.push({ src: img.src, caption, isMain: true });
+    item.addEventListener('click', () => {
+        eventLightboxItems = allItems;
+        openEventLightbox(index);
+    });
+});
 
-        document.getElementById('vinyl-player').addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (isPlaying) {
-                audio.pause();
-                isPlaying = false;
-                disc.classList.remove('playing');
-                label.textContent = '♪ Nhấp để bật';
-            } else {
-                audio.play();
-                isPlaying = true;
-                disc.classList.add('playing');
-                label.textContent = '♪ Đang phát';
-            }
-        });
-    </script>
+const lightbox = document.getElementById('lightbox');
+const lbImg = document.getElementById('lightbox-img');
+const lbCaption = document.getElementById('lightbox-caption');
+
+function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+
+document.getElementById('lightbox-prev').addEventListener('click', (e) => {
+    e.stopPropagation();
+    eventLightboxIndex = (eventLightboxIndex - 1 + eventLightboxItems.length) % eventLightboxItems.length;
+    lbImg.src = eventLightboxItems[eventLightboxIndex].src;
+    lbCaption.textContent = eventLightboxItems[eventLightboxIndex].caption;
+});
+
+document.getElementById('lightbox-next').addEventListener('click', (e) => {
+    e.stopPropagation();
+    eventLightboxIndex = (eventLightboxIndex + 1) % eventLightboxItems.length;
+    lbImg.src = eventLightboxItems[eventLightboxIndex].src;
+    lbCaption.textContent = eventLightboxItems[eventLightboxIndex].caption;
+});
+
+document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') document.getElementById('lightbox-prev').click();
+    if (e.key === 'ArrowRight') document.getElementById('lightbox-next').click();
+});
+
+// ===== VINYL =====
+const audio = document.getElementById('bg-music');
+const disc = document.getElementById('vinyl-disc');
+const label = document.getElementById('vinyl-label');
+let isPlaying = false;
+audio.volume = 0.6;
+
+function tryAutoplay() {
+    audio.play().then(() => { isPlaying = true; disc.classList.add('playing'); label.textContent = '♪ Đang phát'; }).catch(() => {});
+}
+tryAutoplay();
+document.addEventListener('click', function firstClick() { if (!isPlaying) tryAutoplay(); document.removeEventListener('click', firstClick); }, { once: true });
+document.getElementById('vinyl-player').addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (isPlaying) { audio.pause(); isPlaying = false; disc.classList.remove('playing'); label.textContent = '♪ Nhấp để bật'; }
+    else { audio.play(); isPlaying = true; disc.classList.add('playing'); label.textContent = '♪ Đang phát'; }
+});
+</script>
 </body>
 </html>
