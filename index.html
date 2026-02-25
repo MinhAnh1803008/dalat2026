@@ -105,10 +105,9 @@
 
         .trip-item h3 { color: #e67e22; margin-bottom: 10px; text-transform: uppercase; }
 
-        /* ===== GALLERY WITH CAPTIONS ===== */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
         }
 
@@ -158,7 +157,6 @@
             font-style: italic;
         }
 
-        /* ===== LIGHTBOX ===== */
         #lightbox {
             display: none;
             position: fixed;
@@ -171,9 +169,7 @@
             padding: 20px;
         }
 
-        #lightbox.active {
-            display: flex;
-        }
+        #lightbox.active { display: flex; }
 
         #lightbox img {
             max-width: 90vw;
@@ -230,7 +226,6 @@
         #lightbox-next { right: 20px; }
         #lightbox-prev:hover, #lightbox-next:hover { background: rgba(255,255,255,0.25); }
 
-        /* ===== VINYL RECORD PLAYER ===== */
         #vinyl-player {
             position: fixed;
             top: 20px;
@@ -292,9 +287,7 @@
             letter-spacing: 1px;
         }
 
-        #vinyl-player:hover #vinyl-disc {
-            filter: brightness(1.2);
-        }
+        #vinyl-player:hover #vinyl-disc { filter: brightness(1.2); }
 
         #vinyl-tooltip {
             position: absolute;
@@ -312,9 +305,7 @@
             transition: opacity 0.3s;
         }
 
-        #vinyl-player:hover #vinyl-tooltip {
-            opacity: 1;
-        }
+        #vinyl-player:hover #vinyl-tooltip { opacity: 1; }
 
         footer {
             background: #2c3e50;
@@ -376,48 +367,94 @@
     <section>
         <h2>Khoảnh Khắc Đáng Nhớ</h2>
         <div class="gallery-grid" id="gallery-main">
+
             <div class="gallery-item" data-caption="Bình minh rực rỡ trên cao nguyên Đà Lạt 🌅">
                 <img src="pic1.jpg" alt="Ảnh 1">
                 <div class="gallery-caption">Bình minh rực rỡ trên cao nguyên Đà Lạt 🌅</div>
             </div>
+
             <div class="gallery-item" data-caption="Cả lớp check-in tại Quảng trường Lâm Viên 📸">
-                <img src="https://via.placeholder.com/500x350?text=Anh+Da+Lat+2" alt="Ảnh 2">
+                <img src="z7557353044375_47a597f0933e4d216e0e1577072b80d3.jpg" alt="Ảnh 2">
                 <div class="gallery-caption">Cả lớp check-in tại Quảng trường Lâm Viên 📸</div>
             </div>
+
             <div class="gallery-item" data-caption="Dạo bước trong vườn hoa đầy màu sắc 🌸">
                 <img src="z7557353067207_b9008aa9d20fef88b44b46d4c58d8cad.jpg" alt="Ảnh 3">
                 <div class="gallery-caption">Dạo bước trong vườn hoa đầy màu sắc 🌸</div>
             </div>
+
             <div class="gallery-item" data-caption="Nhà thờ Domain - khoảnh khắc bình yên ✨">
                 <img src="z7461389794014_cb1ae4c5a8b0d056518d34d8feeb17e7.jpg" alt="Ảnh 4">
                 <div class="gallery-caption">Nhà thờ Domain - khoảnh khắc bình yên ✨</div>
             </div>
+
             <div class="gallery-item" data-caption="Khám phá Mongo Land cùng nhau 🎡">
-                <img src="https://via.placeholder.com/500x350?text=Anh+Da+Lat+5" alt="Ảnh 5">
+                <img src="z7557353106158_d16a008ab7b8c379e57ed70738df211d.jpg" alt="Ảnh 5">
                 <div class="gallery-caption">Khám phá Mongo Land cùng nhau 🎡</div>
             </div>
+
             <div class="gallery-item" data-caption="Chợ đêm Đà Lạt - ăn gì cũng ngon! 🍢">
-                <img src="https://via.placeholder.com/500x350?text=Anh+Da+Lat+6" alt="Ảnh 6">
+                <img src="pic6.jpg" alt="Ảnh 6">
                 <div class="gallery-caption">Chợ đêm Đà Lạt - ăn gì cũng ngon! 🍢</div>
             </div>
+
+            <div class="gallery-item" data-caption="Kỷ niệm bên hồ Xuân Hương lung linh 🌊">
+                <img src="pic7.jpg" alt="Ảnh 7">
+                <div class="gallery-caption">Kỷ niệm bên hồ Xuân Hương lung linh 🌊</div>
+            </div>
+
+            <div class="gallery-item" data-caption="Cùng nhau ngắm hoàng hôn Đà Lạt 🌇">
+                <img src="pic8.jpg" alt="Ảnh 8">
+                <div class="gallery-caption">Cùng nhau ngắm hoàng hôn Đà Lạt 🌇</div>
+            </div>
+
         </div>
 
         <h2 style="margin-top: 80px;">Những Khoảnh Khắc "Khó Đỡ" 🤣</h2>
         <p class="section-desc">Đi chơi làm sao thiếu được những pha tấu hài đi vào lòng người của lớp mình chứ!</p>
 
         <div class="gallery-grid" id="gallery-funny">
+
             <div class="gallery-item" data-caption="Ai đó không biết cầm đũa 😂">
-                <img src="https://via.placeholder.com/500x350?text=Anh+Hai+Huoc+1" alt="Ảnh hài hước 1">
+                <img src="funny1.jpg" alt="Ảnh hài hước 1">
                 <div class="gallery-caption">Ai đó không biết cầm đũa 😂</div>
             </div>
+
             <div class="gallery-item" data-caption="Pha ngã xe không đau bằng bị quay phim 🎥">
-                <img src="https://via.placeholder.com/500x350?text=Anh+Hai+Huoc+2" alt="Ảnh hài hước 2">
+                <img src="funny2.jpg" alt="Ảnh hài hước 2">
                 <div class="gallery-caption">Pha ngã xe không đau bằng bị quay phim 🎥</div>
             </div>
+
             <div class="gallery-item" data-caption="Mặt ai đây? Tự nhận diện nhé 🙈">
-                <img src="https://via.placeholder.com/500x350?text=Anh+Hai+Huoc+3" alt="Ảnh hài hước 3">
+                <img src="funny3.jpg" alt="Ảnh hài hước 3">
                 <div class="gallery-caption">Mặt ai đây? Tự nhận diện nhé 🙈</div>
             </div>
+
+            <div class="gallery-item" data-caption="Pose hết mình dù trời lạnh cóng ❄️😆">
+                <img src="funny4.jpg" alt="Ảnh hài hước 4">
+                <div class="gallery-caption">Pose hết mình dù trời lạnh cóng ❄️😆</div>
+            </div>
+
+            <div class="gallery-item" data-caption="Khoảnh khắc 'ăn nhiều nhất lớp' lộ diện 🍜😅">
+                <img src="funny5.jpg" alt="Ảnh hài hước 5">
+                <div class="gallery-caption">Khoảnh khắc 'ăn nhiều nhất lớp' lộ diện 🍜😅</div>
+            </div>
+
+            <div class="gallery-item" data-caption="Selfie lúc 6 giờ sáng - nhan sắc không cần filter 😴">
+                <img src="funny6.jpg" alt="Ảnh hài hước 6">
+                <div class="gallery-caption">Selfie lúc 6 giờ sáng - nhan sắc không cần filter 😴</div>
+            </div>
+
+            <div class="gallery-item" data-caption="Đội hình 'lạc đường' kinh điển 🗺️😂">
+                <img src="funny7.jpg" alt="Ảnh hài hước 7">
+                <div class="gallery-caption">Đội hình 'lạc đường' kinh điển 🗺️😂</div>
+            </div>
+
+            <div class="gallery-item" data-caption="Cười không nhặt được miệng - classic! 🤣">
+                <img src="funny8.jpg" alt="Ảnh hài hước 8">
+                <div class="gallery-caption">Cười không nhặt được miệng - classic! 🤣</div>
+            </div>
+
         </div>
     </section>
 
@@ -446,16 +483,12 @@
     </audio>
 
     <script>
-        // ===== LIGHTBOX =====
         const allItems = [];
         document.querySelectorAll('.gallery-item').forEach((item, index) => {
             const img = item.querySelector('img');
             const caption = item.dataset.caption || '';
             allItems.push({ src: img.src, caption });
-
-            item.addEventListener('click', () => {
-                openLightbox(index);
-            });
+            item.addEventListener('click', () => openLightbox(index));
         });
 
         let currentIndex = 0;
@@ -477,9 +510,7 @@
         }
 
         document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) closeLightbox();
-        });
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
 
         document.getElementById('lightbox-prev').addEventListener('click', (e) => {
             e.stopPropagation();
@@ -502,7 +533,6 @@
             if (e.key === 'ArrowRight') document.getElementById('lightbox-next').click();
         });
 
-        // ===== VINYL PLAYER =====
         const audio = document.getElementById('bg-music');
         const disc = document.getElementById('vinyl-disc');
         const label = document.getElementById('vinyl-label');
@@ -510,7 +540,6 @@
 
         audio.volume = 0.6;
 
-        // Autoplay on user interaction (browser policy workaround)
         function tryAutoplay() {
             audio.play().then(() => {
                 isPlaying = true;
@@ -519,10 +548,8 @@
             }).catch(() => {});
         }
 
-        // Try autoplay immediately
         tryAutoplay();
 
-        // Also try on first user interaction
         document.addEventListener('click', function firstClick() {
             if (!isPlaying) tryAutoplay();
             document.removeEventListener('click', firstClick);
